@@ -10,10 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.util.List;
 
 /**
@@ -39,6 +45,7 @@ public class CounterController {
   @GetMapping(value = "/api/count")
   ApiResponse get() {
     logger.info("/api/count get request");
+    logger.error("/api/count ", "33333");
     Optional<Counter> counter = counterService.getCounter(1);
     Integer count = 0;
     if (counter.isPresent()) {
@@ -57,7 +64,7 @@ public class CounterController {
   @PostMapping(value = "/api/count")
   ApiResponse create(@RequestBody CounterRequest request) {
     logger.info("/api/count post request, action: {}", request.getAction());
-
+    logger.error("/api/count ", "222222");
     Optional<Counter> curCounter = counterService.getCounter(1);
     if (request.getAction().equals("inc")) {
       Integer count = 1;
@@ -79,5 +86,5 @@ public class CounterController {
       return ApiResponse.error("参数action错误");
     }
   }
-  
+
 }
