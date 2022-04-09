@@ -44,8 +44,7 @@ public class CounterController {
    */
   @GetMapping(value = "/api/count")
   ApiResponse get() {
-    logger.info("/api/count get request");
-    logger.error("/api/count ", "33333");
+    logger.info("/api/count get request 1111");
     Optional<Counter> counter = counterService.getCounter(1);
     Integer count = 0;
     if (counter.isPresent()) {
@@ -63,8 +62,7 @@ public class CounterController {
    */
   @PostMapping(value = "/api/count")
   ApiResponse create(@RequestBody CounterRequest request) {
-    logger.info("/api/count post request, action: {}", request.getAction());
-    logger.error("/api/count ", "222222");
+    logger.info("/api/count post request, action22222: {}", request.getAction());
     Optional<Counter> curCounter = counterService.getCounter(1);
     if (request.getAction().equals("inc")) {
       Integer count = 1;
